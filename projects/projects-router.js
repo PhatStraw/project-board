@@ -21,4 +21,15 @@ router.post("/:id/addproject", (req, res) => {
         });  
   });
 
+//Get Projects
+router.get("/", restricted, (req, res) => {
+    Projects.getProjects()
+      .then(Projects => {
+        res.status(200).json(Projects);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  });
+
 module.exports = router;
