@@ -22,7 +22,7 @@ router.post("/:id/addproject", (req, res) => {
   });
 
 //Get Projects
-router.get("/", restricted, (req, res) => {
+router.get("/",(req, res) => {
     Projects.getProjects()
       .then(Projects => {
         res.status(200).json(Projects);
