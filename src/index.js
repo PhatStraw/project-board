@@ -9,6 +9,7 @@ import reducer from "./reducers/index.js";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import App from "./App";
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 

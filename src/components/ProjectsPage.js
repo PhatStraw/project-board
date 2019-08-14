@@ -20,12 +20,10 @@ class ProjectsPage extends React.Component {
                 Current Project List
                 </div>
                 
-                {this.props.projects.map(project => (
                  <ProjectCard 
                     toggle={this.toggle}
-                    user={project.user_id}
-                    collapse={this.state.collapse}/>
-                ))}
+                    projects={this.props.projects}
+                    collapse={this.state.collapse}/> 
             </div>
         )
     }
