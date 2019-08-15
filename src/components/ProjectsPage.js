@@ -1,59 +1,55 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import './DonationsPage.css'
-import { fetchProjects, addProject } from "../actions/index"
-import { Transition } from 'react-transition-group';
-import PropTypes from 'prop-types'
+import { fetchProjects } from "../actions/index"
 import ProjectCard from './ProjectCard';
+import {Card, ListGroup, ListGroupItem} from "react-bootstrap"
+
 
 
 class ProjectsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      address: '',
-      email: ''
+
     }
   }
-  
-    render() {       
-        return (
-            <div>
-                  <div className="header-title"> 
-                    Current Project List
-                  </div>
-                {this.props.projects.map(project => (
-                 <ProjectCard 
-                    toggle={this.toggle}
-                    user={project.user_id}
-                    collapse={this.state.collapse}/>
-                ))}
-            </div>
-        )
-    }
-    componentDidMount() {
-      this.props.fetchProjects();
-    }
+
+  render() {
+    return (
+      <div>
+        <div className="sidenav" style={{height: '100%', position: 'fixed'}}>
+          <Card style={{ width: '12rem', marginTop: '3.5rem' }}>
+            <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem><Card.Link href="#">Card Link</Card.Link></ListGroupItem>
+              <ListGroupItem><Card.Link href="#">Card Link</Card.Link></ListGroupItem>
+              <ListGroupItem><Card.Link href="#">Card Link</Card.Link></ListGroupItem>
+            </ListGroup>
+          </Card>
+        </div>
+        <div className="content" style={{marginLeft:'200px', paddingLeft: '20px'}}>
+          <h1 className="header-title">
+            Current Project List
+                </h1>
+          <ProjectCard
+            toggle={this.toggle}
+            projects={this.props.projects}
+            collapse={this.state.collapse} />
+        </div>
+      </div>
+    )
+  }
+  componentDidMount() {
+    this.props.fetchProjects();
+  }
 }
 
-Collapse.propTypes = {
-  ...Transition.propTypes,
-  isOpen: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  className: PropTypes.node,
-  navbar: PropTypes.bool,
-  cssModule: PropTypes.object,
-  innerRef: PropTypes.object,
-};
-
 const mapStateToProps = state => ({
-  projects: state.projects  
+  projects: state.projects
 })
 
-export default connect(mapStateToProps, { fetchProjects, addProject })(DonationsPage)
+export default connect(mapStateToProps, { fetchProjects })(ProjectsPage)

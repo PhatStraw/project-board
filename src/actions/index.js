@@ -16,8 +16,8 @@ export const addUser = newUser => dispatch => {
   };
 
 
-export const ADD_DONATION = "ADD_DONATION";
-export const ADD_DONATION_FAILURE = "ADD_DONATION_FAILURE";
+export const ADD_PROJECT = "ADD_PROJECT";
+export const ADD_PROJECT_FAILURE = "ADD_PROJECT_FAILURE";
   
 export const addProject = newProject => dispatch => {
     axios
@@ -55,7 +55,7 @@ export const FETCH_PROJECTS_FAILURE = "FETCH_PROJECTS_FAILURE";
 export const fetchProjects = () => dispatch => {
     dispatch({ type: FETCH_PROJECTS_START });
     axios
-    .post("http://localhost:3000/projects")
+    .get("http://localhost:3000/projects")
       .then(res => {
         dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
         console.log(res, 'THIS IS FETCH PROJECTS RESULTS')

@@ -1,35 +1,40 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
+import {Navbar,
+        Nav,
+        Link
+        } from "react-bootstrap";
 
-// import Login from './components/Login';
-// import SignupPage from './components/SignUpPage'
-// import ProjectsPage from './components/ProjectsPage'
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage'
+import ProjectsPage from './components/ProjectsPage'
+
+const appStyle = {
+  padding: '1%',
+  margin:'.5%',
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column'
+  
+}
 
 function App() {
   return (
-    <div className="App">
-      <div className="navbar">
-        <div >
-          <Link className="logo" to="/">Project Board</Link>
-        </div>
-        <div className="navitems">
-          {loggedIn ? 
-          <>  
-            <Link>Logout</Link>
-          </>
-          :
-          <>
-            <Link className="navitem" to="/signup">Signup</Link>
-            <Link className="navitem" to="/login">Login</Link>
-          </>}
-        </div>
-      </div>
+    <div className="App" style={appStyle}>
+       <Navbar bg="dark" variant="dark" style={{margin: '1rem', width: '90%'}}>
+        <Navbar.Brand href="#home">Project Board</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/register">Register</Nav.Link>
+        </Nav>
+      </Navbar>
 
-      {/* <div className="container">
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignupPage} />
+      <div className="container">
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
         <Route exact path="/" component={ProjectsPage} />  
-      </div> */}
+      </div>
     </div>
   );
 }
