@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs')
 const Users = require('./users-model.js')
+const generateToken = require('../auth/gen-token.js')
 
 //get all users
 router.get('/', (req, res) => {
@@ -27,23 +28,28 @@ router.get('/', (req, res) => {
   });
 
 //login a user
-  router.post('/login', (req,res) => {
-    let {username, password} = req.body;
+router.post('/login', (req, res) => {
+  let { username, password } = req.body;
 
-    Users.findBy({username})
-        .first()
-        .then(user => {
-            if( user && bcrypt.compareSync(password, user.password)){
-                //make sure the user is coming through
-                console.log(user)
-                res.status(200).json({message: `Welcome ${user.username}!`})
-            } else {
-                res.status(401).json({message: "Invalid Creds"})
-            }
-        })
-        .catch(error => {
-            res.status(500).json(error);
+  Users.findBy({ username })
+    .first()
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+          console.log(user)
+        const token = generateToken(user);
+        console.log(token)
+
+        res.status(200).json({
+          message: `Welcome ${user.username}!`,
+          token
         });
-  })
+      }else{
+        res.status(401).json({ message: 'Invalid Credentials' });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
   module.exports = router;

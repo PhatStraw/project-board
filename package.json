@@ -23,6 +23,7 @@
     "helmet": "^3.20.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.1",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.11",

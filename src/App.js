@@ -29,11 +29,6 @@ function App() {
           <Nav.Link href="/register">Register</Nav.Link>
         </Nav>
       </Navbar>
-      {/* <div className="navbar">
-        <div >
-          <Link className="logo" to="/">Project Board</Link>
-        </div>
-      </div> */}
 
       <div className="container">
         <Route path="/login" component={LoginPage} />
