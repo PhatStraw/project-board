@@ -9,6 +9,8 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage'
 import ProjectsPage from './components/ProjectsPage'
 
+import ProtectedRoute from './ProtectedRoute.js'
+
 const appStyle = {
   padding: '1%',
   margin:'.5%',
@@ -33,7 +35,7 @@ function App() {
       <div className="container">
         <Route path="/login" component={LoginPage} />
         <Route path="/register" component={RegisterPage} />
-        <Route exact path="/" component={ProjectsPage} />  
+        <ProtectedRoute exact path="/" component={ProjectsPage} />  
       </div>
     </div>
   );

@@ -2,8 +2,10 @@ const router = require("express").Router();
 const Projects = require('./projects-model.js');
 const Users = require('../users/users-model.js')
 
+const restrictedMiddleware = require('../auth/restricted-middleware.js')
+
 //add Project
-router.post("/:id/addproject", (req, res) => {
+router.post("/:id/addproject", restrictedMiddleware, (req, res) => {
     console.log('here')
     const id = req.params.id
     Users.findById(id)
@@ -22,7 +24,7 @@ router.post("/:id/addproject", (req, res) => {
   });
 
 //Get Projects
-router.get("/",(req, res) => {
+router.get("/", restrictedMiddleware, (req, res) => {
     Projects.getProjects()
       .then(Projects => {
         res.status(200).json(Projects);

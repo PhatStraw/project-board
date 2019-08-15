@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import RegisterForm from './RegisterForm.js'
+import { addUser } from '../actions/index.js'
 
 class RegisterPage extends React.Component {
     constructor(props){
@@ -14,17 +15,10 @@ class RegisterPage extends React.Component {
     render(){
         return(
             <div>
-                <RegisterForm />
+                <RegisterForm addUser={addUser}/>
             </div>
         )
     }
-    // handleSubmit = () => {
-
-    // }
-
-    // handleChange = () => {
-
-    // }
 }
 
-export default RegisterPage
+export default connect(null, { addUser })(RegisterPage)
