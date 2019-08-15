@@ -34,10 +34,10 @@ module.exports = {
           test: /\.jpg$/, 
           loader: "file-loader" 
         },
-        {
-          test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
-          loader: 'url?limit=10000&mimetype=application/font-woff'
-        },
+        // {
+        //   test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
+        //   loader: 'url?limit=10000&mimetype=application/font-woff'
+        // },
         {
           test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
           loader: 'url?limit=10000&mimetype=application/octet-stream'
@@ -57,5 +57,8 @@ module.exports = {
           template: "./src/index.html",
           filename: "./index.html"
         })
-      ]
+      ],
+      devServer: {
+        historyApiFallback: true,
+      }
   };

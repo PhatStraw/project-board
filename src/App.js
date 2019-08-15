@@ -1,11 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import {Navbar,
-        Nav
+        Nav,
+        Link
         } from "react-bootstrap";
 
-// import Login from './components/Login';
-// import SignupPage from './components/SignUpPage'
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage'
 import ProjectsPage from './components/ProjectsPage'
 
 const appStyle = {
@@ -24,8 +25,8 @@ function App() {
         <Navbar.Brand href="#home">Project Board</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="#features">Login</Nav.Link>
-          <Nav.Link href="#pricing">Register</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/register">Register</Nav.Link>
         </Nav>
       </Navbar>
       {/* <div className="navbar">
@@ -35,8 +36,8 @@ function App() {
       </div> */}
 
       <div className="container">
-        {/* <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignupPage} /> */}
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
         <Route exact path="/" component={ProjectsPage} />  
       </div>
     </div>
