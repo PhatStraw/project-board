@@ -40,7 +40,7 @@ export const login = creds => dispatch => {
   return axios    
     .post('http://localhost:3000/users/login', creds)
     .then(res => {          
-    //   localStorage.setItem('token', res.data.access_token);
+      localStorage.setItem('token', res.data.token);
       dispatch({ type: LOGIN_SUCCESS });
       return true;
     })
