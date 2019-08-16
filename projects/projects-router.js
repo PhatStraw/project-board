@@ -2,8 +2,7 @@ const router = require("express").Router();
 const Projects = require('./projects-model.js');
 const Users = require('../users/users-model.js')
 
-//middleware
-const restrictedMiddleware = require('../auth/middleware/restricted-middleware.js')
+const restrictedMiddleware = require('../auth/restricted-middleware.js')
 
 //add Project
 router.post("/:id/addproject", restrictedMiddleware, (req, res) => {

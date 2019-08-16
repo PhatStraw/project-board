@@ -3,9 +3,6 @@ const bcrypt = require('bcryptjs')
 const Users = require('./users-model.js')
 const generateToken = require('../auth/gen-token.js')
 
-//middleware
-const verifyUserId = require('../auth/middleware/verifyUserId.js')
-
 //get all users
 router.get('/', (req, res) => {
       Users.findUsers()
@@ -14,19 +11,6 @@ router.get('/', (req, res) => {
         })
         .catch(err => res.send(err));   
   });
-
-  //get a user by id
-  router.get('/:id', verifyUserId, (req,res) => {
-    const id = req.params.id
-    
-    Users.findById(id)
-      .then(user => {
-        res.status(200).json(user)
-      })
-      .catch(err => {
-        res.status(500).json({err: "error with user id"})
-      })
-  })
 
 //add a user
   router.post('/register', (req, res) => {

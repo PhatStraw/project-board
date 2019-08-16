@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
-  const token = req.headers.authorization;
-  const jwtSecret = require('../secret.js').jwtSecret
+  const token = req.headers.token;
+  const jwtSecret = require('./secret.js').jwtSecret
 
   if(token) {
     jwt.verify(token, jwtSecret, (err, decodedToken) => {
       if(err) {
-        res.status(402).json({you: 'you shall not pass'})
+        res.status(401).json({you: 'you shall not pass'})
       } else {
         req.jwtToken = decodedToken;
         next()

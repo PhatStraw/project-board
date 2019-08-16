@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {axiosWithAuth} from '../utils/axiosWithAuth.js'
 
 export const ADD_USER = "ADD_USER";
 export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
@@ -21,7 +20,7 @@ export const ADD_PROJECT = "ADD_PROJECT";
 export const ADD_PROJECT_FAILURE = "ADD_PROJECT_FAILURE";
   
 export const addProject = newProject => dispatch => {
-    return axiosWithAuth()
+    axios
     .post("http://localhost:3000/:id/addproject", newProject)
     .then(() => {
       fetchProjects()
@@ -55,7 +54,7 @@ export const FETCH_PROJECTS_FAILURE = "FETCH_PROJECTS_FAILURE";
 
 export const fetchProjects = () => dispatch => {
     dispatch({ type: FETCH_PROJECTS_START });
-    return axiosWithAuth()
+    axios
     .get("http://localhost:3000/projects")
       .then(res => {
         dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
@@ -67,50 +66,13 @@ export const fetchProjects = () => dispatch => {
   };
 
 
-export const FETCH_USERS_START = "FETCH_USERS_START";
-export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
-export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
-
-export const fetchUsers = () => dispatch => {
-    dispatch({ type: FETCH_USERS_START });
-    return axiosWithAuth()
-    .get("http://localhost:3000/users")
-      .then(res => {
-        dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
-        console.log(res, 'THIS IS FETCH USERS RESULTS')
-      })
-      .catch(err => {
-        dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err });
-      });
-  };
-
-
-  export const FETCH_USER_START = "FETCH_USER_START";
-  export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
-  export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE";
-  
-  export const fetchUser = () => dispatch => {
-    const token = localStorage.getItem('token')
-      dispatch({ type: FETCH_USER_START });
-      return axiosWithAuth()
-      .get(`http://localhost:3000/users/${token.id}`)
-        .then(res => {
-          dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
-          console.log(res, 'THIS IS FETCH USER RESULTS')
-        })
-        .catch(err => {
-          dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err });
-        });
-    };
-
-
   export const DELETE_PROJECT_START = 'DELETE_PROJECT_START';
   export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS';
   export const DELETE_PROJECT_FAILURE = 'DELETE_PROJECT_FAILURE';
 
   export const deleteProject = id => dispatch => {
     dispatch({ type: DELETE_PROJECT_START });
-    return axiosWithAuth()
+    axios
       .delete(`http://localhost:3000/projects/delete/${id}`)
       .then(res => { 
         console.log(res)             

@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken')
 module.exports = function generateToken(user) {
     const jwtPayload = {
       subject: user.id,
-      username: user.username,
-      img: user.img
+      username: user.username
     }
     const jwtSecret = require('./secret.js').jwtSecret
     console.log(jwtSecret)
