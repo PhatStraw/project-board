@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from "react-router-dom";
 
-import { fetchProjects } from "../actions/index"
+import { fetchProjects, fetchUser } from "../actions/index"
 import ProjectCard from './ProjectCard';
 import {Card, ListGroup, ListGroupItem} from "react-bootstrap"
 
@@ -11,26 +12,28 @@ class ProjectsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+     
     }
   }
 
   render() {
     return (
-      <div>
-        <div className="sidenav" style={{height: '100%', position: 'fixed'}}>
+      <div>  
+          <div className="sidenav" style={{height: '100%', position: 'fixed'}}>
           <Card style={{ width: '12rem', marginTop: '3.5rem' }}>
             <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
             <Card.Body>
-              <Card.Title>Card Title</Card.Title>
+              <Card.Title>{this.props.token.username}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem><Card.Link href="#">Card Link</Card.Link></ListGroupItem>
+              <ListGroupItem><Card.Link href="#">Card</Card.Link></ListGroupItem>
               <ListGroupItem><Card.Link href="#">Card Link</Card.Link></ListGroupItem>
               <ListGroupItem><Card.Link href="#">Card Link</Card.Link></ListGroupItem>
             </ListGroup>
           </Card>
-        </div>
+        </div> 
+      }
+       
         <div className="content" style={{marginLeft:'200px', paddingLeft: '20px'}}>
           <h1 className="header-title">
             Current Project List
@@ -45,11 +48,13 @@ class ProjectsPage extends React.Component {
   }
   componentDidMount() {
     this.props.fetchProjects();
+    this.props.fetchUser()
   }
 }
 
 const mapStateToProps = state => ({
-  projects: state.projects
+  projects: state.projects,
+  token: state.token
 })
 
-export default connect(mapStateToProps, { fetchProjects })(ProjectsPage)
+export default withRouter(connect(mapStateToProps, { fetchProjects, fetchUser })(ProjectsPage))
