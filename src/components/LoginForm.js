@@ -2,9 +2,9 @@ import React from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { login } from '../actions/index.js'
-import { BrowserRouter as Router } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-class RegisterForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -15,7 +15,7 @@ class RegisterForm extends React.Component {
     render() {
         return (
             <div style={{display: 'flex', justifyContent: 'center', margin: '1rem', flexDirection: 'column', alignItems: 'center'}}>
-            <h1>Register Form</h1>
+            <h1>Login Form</h1>
             <Card style={{width: '27rem', height: '15.7rem'}}>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formUsername">
@@ -65,7 +65,11 @@ class RegisterForm extends React.Component {
     handleSubmit = (e) => {
         const creds = {username: this.state.username, password: this.state.password}
         e.preventDefault();
-        this.props.login(creds)
+        this.props.login(creds).then(() => {
+                this.props.history.push('/')
+        }).catch(err => {
+            console.log('this is an error', err)
+          });
     }
 
     handleChange = (e) => {
@@ -79,4 +83,4 @@ const mapStateToProps = state => ({
     users: state.users
 })
 
-export default connect(mapStateToProps, { login })(RegisterForm)
+export default withRouter(connect(mapStateToProps, { login })(LoginForm))
