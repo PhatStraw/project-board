@@ -25,9 +25,10 @@ router.post("/:id/addproject", restrictedMiddleware, (req, res) => {
   });
 
 //Get Projects
-router.get("/", restrictedMiddleware, (req, res) => {
+router.get("/", (req, res) => {
     Projects.getProjects()
       .then(Projects => {
+        console.log(Projects)
         res.status(200).json(Projects);
       })
       .catch(err => {

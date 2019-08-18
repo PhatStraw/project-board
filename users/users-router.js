@@ -4,7 +4,7 @@ const Users = require('./users-model.js')
 const generateToken = require('../auth/gen-token.js')
 
 //middleware
-const verifyUserId = require('../auth/middleware/verifyUserId.js')
+const restricted = require('../auth/middleware/restricted-middleware.js')
 
 //get all users
 router.get('/', (req, res) => {
@@ -16,16 +16,8 @@ router.get('/', (req, res) => {
   });
 
   //get a user by id
-  router.get('/:id', verifyUserId, (req,res) => {
-    const id = req.params.id
-    
-    Users.findById(id)
-      .then(user => {
-        res.status(200).json(user)
-      })
-      .catch(err => {
-        res.status(500).json({err: "error with user id"})
-      })
+  router.get('/user', restricted, (req,res) => {
+   res.json(req.user)
   })
 
 //add a user
@@ -51,13 +43,13 @@ router.post('/login', (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-          console.log(user)
+          console.log('user',user)
         const token = generateToken(user);
-        console.log(token)
 
         res.status(200).json({
           message: `Welcome ${user.username}!`,
-          token
+          token,
+          user
         });
       }else{
         res.status(401).json({ message: 'Invalid Credentials' });

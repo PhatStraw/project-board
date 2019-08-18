@@ -12,7 +12,7 @@ class ProjectsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     
+     user: {}
     }
   }
 
@@ -21,9 +21,9 @@ class ProjectsPage extends React.Component {
       <div>  
           <div className="sidenav" style={{height: '100%', position: 'fixed'}}>
           <Card style={{ width: '12rem', marginTop: '3.5rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+            <Card.Img variant="top" src={this.props.user.img} alt=''/>
             <Card.Body>
-              <Card.Title>{this.props.token.username}</Card.Title>
+              <Card.Title>{this.props.user.username}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
               <ListGroupItem><Card.Link href="#">Card</Card.Link></ListGroupItem>
@@ -32,7 +32,7 @@ class ProjectsPage extends React.Component {
             </ListGroup>
           </Card>
         </div> 
-      }
+      
        
         <div className="content" style={{marginLeft:'200px', paddingLeft: '20px'}}>
           <h1 className="header-title">
@@ -48,13 +48,13 @@ class ProjectsPage extends React.Component {
   }
   componentDidMount() {
     this.props.fetchProjects();
-    this.props.fetchUser()
+    // this.props.fetchUser()
   }
 }
 
 const mapStateToProps = state => ({
   projects: state.projects,
-  token: state.token
+  user: state.user
 })
 
-export default withRouter(connect(mapStateToProps, { fetchProjects, fetchUser })(ProjectsPage))
+export default withRouter(connect(mapStateToProps, { fetchProjects })(ProjectsPage))
