@@ -34,12 +34,13 @@ class ProjectCard extends React.Component {
               src={obj.img}
             />
             <Media.Body>
-              <h5>{obj.name}</h5>
+              <h4>{obj.name}</h4>
+              <h6>Description:</h6>
               <p>{obj.description}</p>
-              <ul>
-                <li>{obj.tasks}</li>
-              </ul>
-              <span className="note">{obj.languages}</span>
+              <h6>Tasks:</h6>
+              <p>{obj.tasks}</p>
+              <h6>Languages:</h6>
+              <p>{obj.languages}</p>
             </Media.Body>
             </Media>       
         ))}        

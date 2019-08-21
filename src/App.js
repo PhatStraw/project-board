@@ -14,7 +14,8 @@ import ProtectedRoute from './ProtectedRoute.js'
 
 const appStyle = {
   padding: '1%',
-  height: '100vh',
+  minHeight: '100vh',
+  height: '100%',
   width: '100%',
   display: 'flex',
   alignItems: 'center',

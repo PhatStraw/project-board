@@ -24,7 +24,7 @@ class ProjectsPage extends React.Component {
     return (
       <div style={{display:'flex', flexWrap: 'wrap', width: '100%'}}>  
           <div className="sidenav" style={{height: '100%', paddingLeft: '1rem'}}>
-          <Card style={{ width: '12rem', marginTop: '3.5rem' }}>
+          <Card style={{ width: '12rem', marginTop: '3.5rem', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }}>
             <Card.Img variant="top" style={imgStyle} src={this.props.user.img} alt=''/>
             <Card.Body>
               <Card.Title>{this.props.user.username}</Card.Title>
