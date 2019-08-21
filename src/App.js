@@ -4,6 +4,7 @@ import {Navbar,
         Nav,
         Link
         } from "react-bootstrap";
+import Background from '../img/bg-img.jpg'
 
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage'
@@ -13,11 +14,12 @@ import ProtectedRoute from './ProtectedRoute.js'
 
 const appStyle = {
   padding: '1%',
-  margin:'.5%',
+  height: '100vh',
+  width: '100%',
   display: 'flex',
   alignItems: 'center',
-  flexDirection: 'column'
-  
+  flexDirection: 'column',
+  backgroundImage: `url(${Background})`
 }
 
 function App() {
