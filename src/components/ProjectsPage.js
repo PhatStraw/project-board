@@ -30,7 +30,7 @@ class ProjectsPage extends React.Component {
               <Card.Title>{this.props.user.username}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem style={{backgroundColor:'#343a40'}}><Link href="#" style={{color: '#fff', textDecoration: 'none' }}>Profile</Link></ListGroupItem>
+              {/* <ListGroupItem style={{backgroundColor:'#343a40'}}><Link href="#" style={{color: '#fff', textDecoration: 'none' }}>Profile</Link></ListGroupItem> */}
               <ListGroupItem style={{backgroundColor:'#343a40' }}><Link to="/addproject" style={{color: '#fff', textDecoration: 'none' }}>Add Project</Link></ListGroupItem>
             </ListGroup>
           </Card>
