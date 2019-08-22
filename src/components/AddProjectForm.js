@@ -92,7 +92,11 @@ class AddProjectForm extends React.Component {
             user_id: this.props.user.id
         };
         console.log(newProject)
-        this.props.addProject(newProject)
+        this.props.addProject(newProject).then(() => {
+            this.props.history.push('/')
+            }).catch(err => {
+                console.log('this is an error', err)
+            });
     }
 
     handleChange = (e) => {
