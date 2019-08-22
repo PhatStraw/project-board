@@ -37,8 +37,8 @@ class ProjectCard extends React.Component {
               <h4>{obj.name}</h4>
               <h6>Description:</h6>
               <p>{obj.description}</p>
-              <h6>Tasks:</h6>
-              <p>{obj.tasks}</p>
+              <h6>Contact:</h6>
+              <p>{obj.contact}</p>
               <h6>Languages:</h6>
               <p>{obj.languages}</p>
             </Media.Body>

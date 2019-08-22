@@ -22,7 +22,7 @@ export const ADD_PROJECT_FAILURE = "ADD_PROJECT_FAILURE";
   
 export const addProject = newProject => dispatch => {
     return axiosWithAuth()
-    .post("http://localhost:3000/:id/addproject", newProject)
+    .post("http://localhost:3000/projects/addproject", newProject)
     .then(() => {
       fetchProjects()
     })
@@ -95,6 +95,8 @@ export const fetchUsers = () => dispatch => {
       return axiosWithAuth()
       .get(`http://localhost:3000/users/user`)
         .then(res => {
+          localStorage.setItem('token', res.data.token);
+          dispatch({type: ADD_USER, payload: res.data.user})
           dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
           console.log(res, 'THIS IS FETCH USER RESULTS')
         })

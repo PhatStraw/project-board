@@ -6,22 +6,15 @@ const Users = require('../users/users-model.js')
 const restrictedMiddleware = require('../auth/middleware/restricted-middleware.js')
 
 //add Project
-router.post("/:id/addproject", restrictedMiddleware, (req, res) => {
-    console.log('here')
-    const id = req.params.id
-    Users.findById(id)
-        .then(user => {
-            Projects.addProject({...req.body, user_id: user.id})
-            .then(project => {
-                res.status(201).json(project);
-            })
-            .catch(err => {
-                res.status(500).json({err: 'couldnt add user'});
-            });      
-        })
-        .catch(err => {
-            res.status(500).json({message: "Couldnt find user"});
-        });  
+router.post("/addproject", restrictedMiddleware, (req, res) => {
+  console.log('req.user',req.user)
+    Projects.addProject({...req.body, user_id: req.user.id})
+      .then(project => {
+          res.status(201).json(project);
+      })
+      .catch(err => {
+          res.status(500).json({err: 'couldnt add user'});
+      });          
   });
 
 //Get Projects

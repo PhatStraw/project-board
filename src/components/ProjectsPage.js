@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import { fetchProjects } from "../actions/index"
 import ProjectCard from './ProjectCard';
@@ -24,14 +24,14 @@ class ProjectsPage extends React.Component {
     return (
       <div style={{display:'flex', flexWrap: 'wrap', width: '100%'}}>  
           <div className="sidenav" style={{height: '100%', paddingLeft: '1rem'}}>
-          <Card style={{ width: '12rem', marginTop: '3.5rem', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)' }}>
+          <Card bg="dark" text="white" style={{ width: '12rem', marginTop: '3.5rem', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'}}>
             <Card.Img variant="top" style={imgStyle} src={this.props.user.img} alt=''/>
             <Card.Body>
               <Card.Title>{this.props.user.username}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem><Card.Link href="#">Profile</Card.Link></ListGroupItem>
-              <ListGroupItem><Card.Link href="#">Add Project</Card.Link></ListGroupItem>
+              <ListGroupItem style={{backgroundColor:'#343a40'}}><Link href="#" style={{color: '#fff', textDecoration: 'none' }}>Profile</Link></ListGroupItem>
+              <ListGroupItem style={{backgroundColor:'#343a40' }}><Link to="/addproject" style={{color: '#fff', textDecoration: 'none' }}>Add Project</Link></ListGroupItem>
             </ListGroup>
           </Card>
         </div> 
