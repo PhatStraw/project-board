@@ -27,7 +27,9 @@ const initialState = {
     error: null,
     loading: true,
     deleting: false,
-    token: localStorage.getItem("token")
+    token: localStorage.getItem("token"),
+    user: {
+    }
 }
 
 export const reducer = (state = initialState, action) => {
@@ -35,7 +37,7 @@ export const reducer = (state = initialState, action) => {
         case ADD_USER:
             return {
             ...state,
-            users: action.payload
+            user: action.payload
         };
         case ADD_USER_FAILURE:
             return {

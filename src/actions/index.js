@@ -22,7 +22,7 @@ export const ADD_PROJECT_FAILURE = "ADD_PROJECT_FAILURE";
   
 export const addProject = newProject => dispatch => {
     return axiosWithAuth()
-    .post("http://localhost:3000/:id/addproject", newProject)
+    .post("http://localhost:3000/projects/addproject", newProject)
     .then(() => {
       fetchProjects()
     })
@@ -42,6 +42,7 @@ export const login = creds => dispatch => {
     .post('http://localhost:3000/users/login', creds)
     .then(res => {          
       localStorage.setItem('token', res.data.token);
+      dispatch({type: ADD_USER, payload: res.data.user})
       dispatch({ type: LOGIN_SUCCESS });
       return true;
     })
@@ -58,8 +59,9 @@ export const fetchProjects = () => dispatch => {
     return axiosWithAuth()
     .get("http://localhost:3000/projects")
       .then(res => {
-        dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
         console.log(res, 'THIS IS FETCH PROJECTS RESULTS')
+        dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
+        
       })
       .catch(err => {
         dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err });
@@ -90,11 +92,11 @@ export const fetchUsers = () => dispatch => {
   export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE";
   
   export const fetchUser = () => dispatch => {
-    const token = localStorage.getItem('token')
-      dispatch({ type: FETCH_USER_START });
       return axiosWithAuth()
-      .get(`http://localhost:3000/users/${token.id}`)
+      .get(`http://localhost:3000/users/user`)
         .then(res => {
+          localStorage.setItem('token', res.data.token);
+          dispatch({type: ADD_USER, payload: res.data.user})
           dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
           console.log(res, 'THIS IS FETCH USER RESULTS')
         })

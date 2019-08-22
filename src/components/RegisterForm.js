@@ -9,6 +9,7 @@ class RegisterForm extends React.Component {
         this.state = {
             username: '',
             password: '',
+            img:'',
             error: {},
             isLoading: false
         }
@@ -17,7 +18,7 @@ class RegisterForm extends React.Component {
         return (
             <div style={{display: 'flex', justifyContent: 'center', margin: '1rem', flexDirection: 'column', alignItems: 'center'}}>
             <h1>Register Form</h1>
-            <Card style={{width: '27rem', height: '15.7rem'}}>
+            <Card style={{width: '27rem', height: '20.2rem'}}>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formUsername">
 
@@ -32,10 +33,6 @@ class RegisterForm extends React.Component {
                         value={this.state.username} 
                         onChange={this.handleChange} required
                     />
-
-                    <Form.Text className="text-muted">
-                        We'll never share your information with anyone else.
-                    </Form.Text>
 
                 </Form.Group>
 
@@ -55,6 +52,22 @@ class RegisterForm extends React.Component {
 
                 </Form.Group>
 
+                <Form.Group controlId="img">
+
+                    <Form.Label style={{margin: '.5rem'}}>
+                        Picture
+                    </Form.Label>
+
+                    <Form.Control 
+                        type="img"
+                        name="img" 
+                        placeholder="Enter a Image URL to express yourself" 
+                        value={this.state.img} 
+                        onChange={this.handleChange} required
+                    />
+
+                </Form.Group>
+
                 <Button variant="primary" type="submit" disabled={this.state.isLoading}>
                     Submit
                 </Button>
@@ -67,7 +80,8 @@ class RegisterForm extends React.Component {
         e.preventDefault()
         const newUser = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            img: this.state.img
         };
         console.log(newUser)
         this.props.addUser(newUser)
