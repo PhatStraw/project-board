@@ -13,7 +13,7 @@ server.use(helmet())
 server.use(cors())
 server.use(express.json())
 
-if(process.env.NODE_ENV === "production") {
+if(process.env.DB_ENV === "production") {
   server.use(express.static('dist'));
 
   server.get('*', (req, res) => {
