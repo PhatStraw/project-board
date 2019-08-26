@@ -8,7 +8,7 @@
     "start": "node index.js",
     "startfe": "webpack-dev-server --open --mode development",
     "dev": "nodemon index.js",
-    "heroku-postbuild": "npm install && npm run build && npm start",
+    "heroku-postbuild": "webpack -p",
     "build": "webpack --mode production"
   },
   "author": "kevin sims",

@@ -9,7 +9,7 @@ if(process.env.DB_ENV === "production") {
   server.use(express.static('dist'));
 
   server.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, "dist", "index.html"))
+    res.sendFile(path.resolve(__dirname, '/dist', "index.html"))
   })
 }
 
