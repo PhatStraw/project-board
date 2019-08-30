@@ -6,7 +6,7 @@ export const ADD_USER_FAILURE = "ADD_USER_FAILURE";
 
 export const addUser = newUser => dispatch => {
   axios
-      .post("http://localhost:3000/users/register", newUser)
+      .post("https://projectboarddb.herokuapp.com/users/register", newUser)
       .then(res => {
         console.log(res)
         dispatch({ type: ADD_USER, payload: res.data });
@@ -22,7 +22,7 @@ export const ADD_PROJECT_FAILURE = "ADD_PROJECT_FAILURE";
   
 export const addProject = newProject => dispatch => {
     return axiosWithAuth()
-    .post("http://localhost:3000/projects/addproject", newProject)
+    .post("https://projectboarddb.herokuapp.com/projects/addproject", newProject)
     .then(() => {
       fetchProjects()
     })
@@ -39,7 +39,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios    
-    .post('http://localhost:3000/users/login', creds)
+    .post('https://projectboarddb.herokuapp.com/users/login', creds)
     .then(res => {          
       localStorage.setItem('token', res.data.token);
       dispatch({type: ADD_USER, payload: res.data.user})
@@ -57,7 +57,7 @@ export const FETCH_PROJECTS_FAILURE = "FETCH_PROJECTS_FAILURE";
 export const fetchProjects = () => dispatch => {
     dispatch({ type: FETCH_PROJECTS_START });
     return axiosWithAuth()
-    .get("http://localhost:3000/projects")
+    .get("https://projectboarddb.herokuapp.com/projects")
       .then(res => {
         console.log(res, 'THIS IS FETCH PROJECTS RESULTS')
         dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
@@ -76,7 +76,7 @@ export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
 export const fetchUsers = () => dispatch => {
     dispatch({ type: FETCH_USERS_START });
     return axiosWithAuth()
-    .get("http://localhost:3000/users")
+    .get("https://projectboarddb.herokuapp.com/users")
       .then(res => {
         dispatch({ type: FETCH_USERS_SUCCESS, payload: res.data });
         console.log(res, 'THIS IS FETCH USERS RESULTS')
@@ -93,7 +93,7 @@ export const fetchUsers = () => dispatch => {
   
   export const fetchUser = () => dispatch => {
       return axiosWithAuth()
-      .get(`http://localhost:3000/users/user`)
+      .get(`https://projectboarddb.herokuapp.com/users/user`)
         .then(res => {
           localStorage.setItem('token', res.data.token);
           dispatch({type: ADD_USER, payload: res.data.user})
@@ -113,7 +113,7 @@ export const fetchUsers = () => dispatch => {
   export const deleteProject = id => dispatch => {
     dispatch({ type: DELETE_PROJECT_START });
     return axiosWithAuth()
-      .delete(`http://localhost:3000/projects/delete/${id}`)
+      .delete(`https://projectboarddb.herokuapp.com/projects/delete/${id}`)
       .then(res => { 
         console.log(res)             
         dispatch({ type: DELETE_PROJECT_SUCCESS, payload: id });
