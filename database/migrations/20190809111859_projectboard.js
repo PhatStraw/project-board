@@ -10,9 +10,10 @@ exports.up = function(knex) {
     //projects table 
   .createTable('projects', projects => {
       projects.increments();
+      projects.string('img')
       projects.text('name')
       projects.text('description')
-      projects.text('tasks')
+      projects.text('contact')
       projects.text('languages')
       projects.integer('user_id')
         .unsigned()

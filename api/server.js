@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors')
 const helmet = require('helmet')
 const server = express();
+const path = require('path')
 
 //Configures routes
 const configRoutes = require('../config/routes.js')

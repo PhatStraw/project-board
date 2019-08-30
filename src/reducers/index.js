@@ -11,7 +11,13 @@ import {
     ADD_PROJECT_FAILURE,
     DELETE_PROJECT_START,
     DELETE_PROJECT_SUCCESS,
-    DELETE_PROJECT_FAILURE
+    DELETE_PROJECT_FAILURE,
+    FETCH_USERS_START,
+    FETCH_USERS_SUCCESS,
+    FETCH_USERS_FAILURE,
+    FETCH_USER_START, 
+    FETCH_USER_SUCCESS, 
+    FETCH_USER_FAILURE
 } from "../actions/index.js"
 
 const initialState = {
@@ -21,6 +27,9 @@ const initialState = {
     error: null,
     loading: true,
     deleting: false,
+    token: localStorage.getItem("token"),
+    user: {
+    }
 }
 
 export const reducer = (state = initialState, action) => {
@@ -28,7 +37,7 @@ export const reducer = (state = initialState, action) => {
         case ADD_USER:
             return {
             ...state,
-            users: action.payload
+            user: action.payload
         };
         case ADD_USER_FAILURE:
             return {
@@ -103,7 +112,46 @@ export const reducer = (state = initialState, action) => {
             deleting: false,
             error: action.payload
             };
+        case FETCH_USERS_START:
+            return {
+            ...state,
+            loading: true,
+            error: null
+            };
+        case FETCH_USERS_SUCCESS:
+            return {
+            ...state,
+            users: action.payload,
+            loading: false,
+            error: null
+            };
+        case FETCH_USERS_FAILURE:
+            return {
+            ...state,
+            loading: false,
+            error: action.payload
+            };
+        case FETCH_USER_START:
+            return {
+            ...state,
+            loading: true,
+            error: null
+            };
+        case FETCH_USER_SUCCESS:
+            return {
+            ...state,
+            user: action.payload,
+            loading: false,
+            error: null
+            }
+        case FETCH_USER_FAILURE:
+            return {
+            ...state,
+            loading: false,
+            error: action.payload
+            }
         default:
             return state;
     }
 }
+export default reducer;
