@@ -8,7 +8,8 @@
     "start": "node index.js",
     "startfe": "webpack-dev-server --open --mode development",
     "dev": "nodemon index.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
   "author": "kevin sims",
   "license": "ISC",
