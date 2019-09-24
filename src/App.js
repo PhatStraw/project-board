@@ -17,19 +17,18 @@ const appStyle = {
   width: '100%',
   display: 'flex',
   alignItems: 'center',
-  flexDirection: 'column',
-  backgroundImage: `url(${Background})`
+  flexDirection: 'column'
 }
 
 function App() {
   return (
     <div className="App" style={appStyle}>
-       <Navbar bg="dark" variant="dark" style={{margin: '1rem', width: '90%'}}>
-        <Navbar.Brand to="/">Project Board</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Link style={{color: '#fff', textDecoration: 'none', paddingRight: '1rem' }} to="/">Home</Link>
-          <Link style={{color: '#fff', textDecoration: 'none', paddingRight: '1rem' }} to="/login">Login</Link>
-          <Link style={{color: '#fff', textDecoration: 'none', paddingRight: '1rem' }} to="/register">Register</Link>
+       <Navbar bg="dark" variant="dark" style={{margin: '1rem', width: '90%', padding: ".5rem"}}>
+        <Navbar.Brand style={{paddingLeft: '1rem'}}to="/">Project Board</Navbar.Brand>
+        <Nav>
+          <Link style={{color: '#fff', textDecoration: 'none', paddingRight: '3rem', marginBottom: '.4rem' }} to="/">Home</Link>
+          <Link style={{color: '#fff', textDecoration: 'none', paddingRight: '3rem', marginBottom: '.4rem' }} to="/login">Login</Link>
+          <Link style={{color: '#fff', textDecoration: 'none', paddingRight: '3rem', marginBottom: '.4rem' }} to="/register">Register</Link>
         </Nav>
       </Navbar>
 

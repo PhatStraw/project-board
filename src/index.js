@@ -10,6 +10,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import App from "./App";
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import "./App.css"
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 

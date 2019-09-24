@@ -22,7 +22,7 @@ class ProjectsPage extends React.Component {
 
   render() {
     return (
-      <div style={{display:'flex', flexWrap: 'wrap', width: '100%'}}>  
+      <div style={{display:'flex', width: '100%'}}>  
           <div className="sidenav" style={{height: '100%', paddingLeft: '1rem'}}>
           <Card bg="dark" text="white" style={{ width: '12rem', marginTop: '3.5rem', boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'}}>
             <Card.Img variant="top" style={imgStyle} src={this.props.user.img} alt=''/>
@@ -37,7 +37,7 @@ class ProjectsPage extends React.Component {
         </div> 
       
        
-        <div className="content" style={{display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', width: '80%', paddingLeft: '2rem'}}>
+        <div className="content" style={{display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', width: '80%', paddingLeft: '2rem', marginTop: '3.5rem'}}>
           <h1 className="header-title" style={{backgroundColor:'#ff6000', color: '#343a40'}}>
             Current Project List
                 </h1>
